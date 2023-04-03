@@ -20,19 +20,15 @@
 #
 function tell_current_weather(w)
 
-println("1")
     # clouds in /8:
     #
     okta = w[:clouds] / 12.5 |> round |> Int
-println("2")
     words = [:clouds_0_oktas, 
              :clouds_1_okta, :clouds_2_oktas, :clouds_3_oktas,
              :clouds_4_oktas, :clouds_5_oktas, :clouds_6_oktas,
              :clouds_7_oktas, :clouds_8_oktas]
-println("3")
 
     temp_celsius = w[:temperature] - 273.15 |> round |> Int
-println("4")
 
     # rain:
     #
@@ -42,7 +38,7 @@ println("clouds: $(words[okta+1]), rain: $rain, T: $temp_celsius")
     publish_say(:weather_is)
     publish_say(words[okta+1])
 
-    publish_say(:sky_is, oktas, :sky_is_2)
+    publish_say(:sky_is, okta, :sky_is_2)
     publish_say(:temperature_is, temp_celsius, :temperature_is_2)
 
     if rain < 0.1
