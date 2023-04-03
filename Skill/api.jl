@@ -20,15 +20,19 @@
 #
 function tell_current_weather(w)
 
+println("1")
     # clouds in /8:
     #
     okta = w[:clouds] / 12.5 |> round |> Int
+println("2")
     words = [:clouds_0_oktas, 
              :clouds_1_okta, :clouds_2_oktas, :clouds_3_oktas,
              :clouds_4_oktas, :clouds_5_oktas, :clouds_6_oktas,
              :clouds_7_oktas, :clouds_8_oktas]
+println("3")
 
     temp_celsius = w[:temperature] - 273.15 |> round |> Int
+println("4")
 
     # rain:
     #
