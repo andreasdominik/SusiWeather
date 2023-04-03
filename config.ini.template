@@ -19,7 +19,7 @@
 #      (maybe not neeeded?)
 #
 [global]
-this_skill_name = TEMPLATE_SKILL
+this_skill_name = SusiWeather
 
 
 # These sections are for sentences and sentence snippets
@@ -28,12 +28,121 @@ this_skill_name = TEMPLATE_SKILL
 # publish_say(:skill_echo, "my new skill")
 #
 [de]
-:skill_echo =  Hallo, ich bin die Hermes-Skill
-:slot_echo_1 = der Wert des Slots
-:slot_echo_2 = ist
-:end_say =     das wars
-:ask_echo_slots = soll ich die Slots des Intent aufsagen?
-:no_slots =    der Intent hat keine Slots
+:no_weather_service = Leider sind keine Wetterdaten verfügbar
+:looking_up_weather_db = Ich schaue nach dem Wetter in der Datenbank
+
+:weather_is = Das aktuelle Wetter zuhause ist
+:clouds_0_oktas = wolkenlos
+:clouds_1_okta = sonnig
+:clouds_2_oktas = heiter
+:clouds_3_oktas = leicht bewölkt
+:clouds_4_oktas = wolkig
+:clouds_5_oktas = bewölkt
+:clouds_6_oktas = stark bewölkt
+:clouds_7_oktas = fast bedeckt
+:clouds_8_oktas = bedeckt
+
+:sky_is = der Himmel ist zu 
+:sky_is_2 =  Achtel bedeckt
+
+:temperature_is = die Temperatur ist
+:temperature_is_2 = Grad Celsius
+
+:wind_is = die Windstärke ist 
+:wind_is_2 = Kilometer pro Stunde aus Richtung 
+:north = Nord
+:noth_north_east = Nordnordost
+:north_east = Nordost
+:east_north_east = Ostnordost
+:east = Ost
+:east_south_east = Ostsüdost
+:south_east = Südost
+:south_south_east = Südsüdost
+:south = Süd
+:south_south_west = Südsüdwest
+:south_west = Südwest
+:west_south_west = Westsüdwest
+:west = West
+:west_north_west = Westnordwest
+:north_west = Nordwest
+:north_north_west = Nordnordwest
+
+:no_rain = Aktuell regnet es nicht
+:rain_now = Aktuell regnet es 
+:rain_now_2 = Millimeter pro Stunde
+
+:no_rain_since_yesterday = Seit gestern hat es nicht geregnet
+:rain_since_yesterday = Seit gestern hat es
+:rain_since_2 = Millimeter geregnet
+
+:no_rain_last_2_days = In den letzten 2 Tagen hat es nicht geregnet
+:rain_last_2_days = In den letzten 2 Tagen hat es
+
+:no_rain_last_week = In der gesamten letzten Woche hat es nicht geregnet
+:rain_last_week = Inerhalb der letzten Woche hat es
+
+[en]
+:no_weather_service = No weather data available
+:looking_up_weather_db = I am looking up the weather in the database
+
+:weather_is = The current weather at home is
+:clouds_0_oktas = clear
+:clouds_1_okta = sunny 
+:clouds_2_oktas = sunny with few clouds
+:clouds_3_oktas = sunny with scattered clouds
+:clouds_4_oktas = sunny with scattered clouds
+:clouds_5_oktas = cloudy with broken clouds
+:clouds_6_oktas = cloudy with broken clouds
+:clouds_7_oktas = cloudy with broken clouds
+:clouds_8_oktas = cloudy overcast
+
+:sky_is = the sky is
+:sky_is_2 = oktas covered
+
+:temperature_is = the temperature is
+:temperature_is_2 = degrees Celsius
+
+:wind_is = the wind speed is
+:wind_is_2 = kilometers per hour from direction
+:north = north
+:noth_north_east = north-northeast
+:north_east = northeast
+:east_north_east = east-northeast
+:east = east
+:east_south_east = east-southeast
+:south_east = southeast
+:south_south_east = south-southeast
+:south = south
+:south_south_west = south-southwest
+:south_west = southwest
+:west_south_west = west-southwest
+:west = west
+:west_north_west = west-northwest
+:north_west = northwest
+:north_north_west = north-northwest
+
+:no_rain = Currently it is not raining
+:rain_now = Currently it is raining
+:rain_now_2 = millimeters per hour
+
+:no_rain_since_yesterday = Since yesterday it has not rained
+:rain_since_yesterday = Since yesterday it has rained   
+:rain_since_2 = millimeters
+
+:no_rain_last_2_days = In the last 2 days it has not rained
+:rain_last_2_days = In the last 2 days it has rained
+
+:no_rain_last_week = In the last week it has not rained
+:rain_last_week = In the last week it has rained
+
+
+
+
+
+
+
+
+
 
 # rules to identify falsedetection of intents by the
 # NLU can be added in the section of each language.
@@ -47,12 +156,6 @@ this_skill_name = TEMPLATE_SKILL
 # SayTime:must_span = spät, bitte
 
 [en]
-:skill_echo =  hello, i am the Hermes skill
-:slot_echo_1 = the value of the slot
-:slot_echo_2 = is
-:end_say =     and done
-:ask_echo_slots = do you want me to list the slots of this intent?
-:no_slots =    the intent has no slots
 
 # SayTime:must_include = time, is
 # SayTime:must_chain = what, is

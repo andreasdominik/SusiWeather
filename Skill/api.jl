@@ -37,12 +37,6 @@ function tell_current_weather(w)
     publish_say(:weather_is)
     publish_say(words[oktas])
 
-    if oktas == 1
-        oktas_word = "ein"
-    else
-        oktas_word = string(oktas)
-    end
-    
     publish_say(:sky_is, oktas_word, :sky_is_2)
     publish_say(:temperature_is, temp_celsius, :temperature_is_2)
 
