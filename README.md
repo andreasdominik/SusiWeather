@@ -72,5 +72,5 @@ Tell the current wind speed and direction.
 
 ## Languages
 
-Current supported languages include English, German and French.
+Current supported languages include English and German.
 
