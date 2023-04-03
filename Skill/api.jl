@@ -32,17 +32,18 @@ function tell_current_weather(w)
 
     # rain:
     #
-    rain_1h = w[:rain]
+    rain = w[:rain1h]
 
     publish_say(:weather_is)
-    publish_say(words[oktas])
+    publish_say(words[oktas+1])
 
-    publish_say(:sky_is, oktas_word, :sky_is_2)
+    publish_say(:sky_is, oktas, :sky_is_2)
     publish_say(:temperature_is, temp_celsius, :temperature_is_2)
 
-    if rain_1h < 0.1
+    if rain < 0.1
         publish_say(:no_rain)
     else
+        rain = Int(ceil(rain))
         publish_say(:rain_now, rain_1h, :rain_now_2)
     end
 end
