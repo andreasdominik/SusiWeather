@@ -8,16 +8,19 @@ The skill is written in Julia with the HermesMQTT.jl framework.
 Some time ago, I read that the most popular apps on the Google Play Store 
 are Weather apps. 
 Although it is not quite understandable what the point of an app is 
-that tells you approximately what you can also experience by looking 
+that uses billion-dollar rocket science technology to tell us approximately 
+what we can also experience by looking 
 out of the window, there are at least 2 reasons to write a weather skill for 
 an home assistant:
 
 Firstly it is possible to use the app remotely and ask for the weather
 condition at home while beeing somewhere else (and remotly control 
 irrigation or sun protection, if necessary).
+Secondly the skill demonstates the use of the weather-history inside
+the HermesMQTT.jl framework.
 
-Another reason may be that using the *HermesMQTT* skill generator
-makes coding the app a work of less than 10 minutes (actually writing this README
+Another reason might be that using the *HermesMQTT* skill generator
+makes coding the app a work of less than 30 minutes (actually writing this README
 takes longer than coding the skill).
 
 ### Julia
