@@ -6,7 +6,7 @@
 #
 module SusiWeather
 
-import Dates
+using Dates
 
 const MODULE_NAME = @__MODULE__
 const MODULE_DIR = @__DIR__
