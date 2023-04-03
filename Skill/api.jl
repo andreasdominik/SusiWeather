@@ -30,6 +30,31 @@ function tell_current_weather(w)
 
     temp_celsius = w[:temperature] - 273.15 |> round |> Int
 
+    # rain:
+    #
+    rain_1h = w[:rain]
+
+    publish_say(:weather_is)
+    publish_say(words[oktas])
+
+    if oktas == 1
+        oktas_word = "ein"
+    else
+        oktas_word = string(oktas)
+    end
+    
+    publish_say(:sky_is, oktas_word, :sky_is_2)
+    publish_say(:temperature_is, temp_celsius, :temperature_is_2)
+
+    if rain_1h < 0.1
+        publish_say(:no_rain)
+    else
+        publish_say(:rain_now, rain_1h, :rain_now_2)
+    end
+end
+
+function tell_current_wind(w)
+
     # wind dir:
     #
     dirs = [:north, :north_north_east, :north_east, :east_north_east,
@@ -42,25 +67,70 @@ function tell_current_weather(w)
     wind_name = dirs[wind_num+1]
     wind_speed = w[:windspeed] |> round |> Int
 
-    # rain:
+    publish_say(:wind_is, wind_speed, :wind_is_2, wind_name)
+end
+
+
+function tell_rain_status(weather_history)
+
+    start_today = Dates.now() |> Dates.Date |> Dates.DateTime
+    start_yesterday = start_today - Dates.Day(1)
+    start_2_days = start_today - Dates.Day(2) 
+    start_week = start_today - Dates.Day(7)
+
+    publish_say(:looking_up_weather_db)
+
+    rain_today = mm_since(weather_history, start_today)
+    rain_yesterday = mm_since(weather_history, start_yesterday)
+    rain_2_days = mm_since(weather_history, start_2_days)
+    rain_week = mm_since(weather_history, start_week)
+
+    # today:
     #
-    rain_1h = w[:rain]
-
-    publish_say(:weather_is)
-    publish_say(words[oktas])
-
-    publish_say(:sky_is, oktas, :sky_is_2)
-    publish_say(:temperature_is, temp_celsius, :temperature_is_2)
-    publish_say(:wind_is, wind_speed, wind_name)
-
-    if rain_1h < 0.1
+    w = get_weather()
+    if w[:rain1h] < 0.1
         publish_say(:no_rain)
     else
-        publish_say(:rain_now, rain_1h, :rain_now_2)
+        publish_say(:rain_now, w[:rain1h], :rain_now_2)
+    end
+
+    # since yesterday:
+    #
+    if rain_yesterday < 0.1
+        publish_say(:no_rain_since_yesterday)
+    else
+        publish_say(:rain_since_yesterday, rain_yesterday, :rain_since_2)
+    end
+
+    # last 2 days:
+    #
+    if rain_2_days < 0.1
+        publish_say(:no_rain_last_2_days)
+    else
+        publish_say(:rain_last_2_days, rain_2_days, :rain_since_2)
+    end
+
+    # last week:
+    #
+    if rain_week < 0.1
+        publish_say(:no_rain_last_week)
+    else
+        publish_say(:rain_last_week, rain_week, :rain_since_2)
     end
 end
 
 
+function mm_since(wh, old)
 
-    rain_today = get_rain()[:today]
-    rain_2_days = get_rain()[:two_days]
+    old = string(old)
+    cumulative_mm = 0.0
+    for w in wh
+        if w[:time] > old && haskey(w, :rain1h)
+            cumulative_mm += w[:rain1h]
+        end
+    end
+
+    return round(cumulative_mm) |> Int
+end
+
+    

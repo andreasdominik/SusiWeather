@@ -18,8 +18,7 @@
 """
     Susi_TellWeather_action(topic, payload)
 
-Generated dummy action for the intent Susi:TellWeather.
-This function will be executed when the intent is recognized.
+Echo the current weather.
 """
 function Susi_TellWeather_action(topic, payload)
 
@@ -42,21 +41,19 @@ end
 """
     Susi_TellRain_action(topic, payload)
 
-Generated dummy action for the intent Susi:TellRain.
-This function will be executed when the intent is recognized.
+Echo the rain of the last days.
 """
 function Susi_TellRain_action(topic, payload)
 
     print_log("action Susi_TellRain_action() started.")
-    publish_say(:skill_echo, get_intent(payload))
 
-    if ask_yes_or_no(:ask_echo_slots)
-publish_say(:no_slot)
-    else   # ask returns false
-        # do nothing
+    weather_history = db_read_value(:SusiWeather, :times)
+    if isnothing(weather_history) || length(weather_history) < 1
+        publish_say(:no_weather_service)
+    else
+        tell_rain_status(weather_history)
     end
-
-    publish_end_session(:end_say)
+    publish_end_session()
     return true
 end
 
@@ -66,20 +63,19 @@ end
 """
     Susi_TellWind_action(topic, payload)
 
-Generated dummy action for the intent Susi:TellWind.
-This function will be executed when the intent is recognized.
+Tell the wind
 """
 function Susi_TellWind_action(topic, payload)
 
     print_log("action Susi_TellWind_action() started.")
-    publish_say(:skill_echo, get_intent(payload))
 
-    if ask_yes_or_no(:ask_echo_slots)
-publish_say(:no_slot)
-    else   # ask returns false
-        # do nothing
+    w = get_weather()
+    if isnothing(w)
+        publish_say(:no_weather_service)
+    else
+        tell_current_wind(w)
     end
 
-    publish_end_session(:end_say)
+    publish_end_session()
     return true
 end
