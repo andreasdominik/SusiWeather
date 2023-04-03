@@ -22,7 +22,7 @@ function tell_current_weather(w)
 
     # clouds in /8:
     #
-    oktas = w[:clouds] / 12.5 |> round |> Int
+    okta = w[:clouds] / 12.5 |> round |> Int
     words = [:clouds_0_oktas, 
              :clouds_1_okta, :clouds_2_oktas, :clouds_3_oktas,
              :clouds_4_oktas, :clouds_5_oktas, :clouds_6_oktas,
@@ -33,9 +33,10 @@ function tell_current_weather(w)
     # rain:
     #
     rain = w[:rain1h]
+println("clouds: $(words[okta+1]), rain: $rain, T: $temp_celsius")
 
     publish_say(:weather_is)
-    publish_say(words[oktas+1])
+    publish_say(words[okta+1])
 
     publish_say(:sky_is, oktas, :sky_is_2)
     publish_say(:temperature_is, temp_celsius, :temperature_is_2)
