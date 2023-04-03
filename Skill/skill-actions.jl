@@ -24,15 +24,15 @@ This function will be executed when the intent is recognized.
 function Susi_TellWeather_action(topic, payload)
 
     print_log("action Susi_TellWeather_action() started.")
-    publish_say(:skill_echo, get_intent(payload))
-
-    if ask_yes_or_no(:ask_echo_slots)
-publish_say(:no_slot)
-    else   # ask returns false
-        # do nothing
+    
+    w = get_weather()
+    if isnothing(w)
+        publish_say(:no_weather_service)
+    else
+        tell_current_weater(w)
     end
 
-    publish_end_session(:end_say)
+    publish_end_session()
     return true
 end
 
