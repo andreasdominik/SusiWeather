@@ -25,6 +25,7 @@ function Susi_TellWeather_action(topic, payload)
     print_log("action Susi_TellWeather_action() started.")
     
     w = get_weather()
+    println(w)
     if isnothing(w)
         publish_say(:no_weather_service)
     else
