@@ -33,7 +33,7 @@ function tell_current_weather(w)
     # rain:
     #
     rain = w[:rain1h]
-println("clouds: $(words[okta+1]), rain: $rain, T: $temp_celsius")
+    # println("clouds: $(words[okta+1]), rain: $rain, T: $temp_celsius")
 
     publish_say(:weather_is)
     publish_say(words[okta+1])
@@ -47,6 +47,8 @@ println("clouds: $(words[okta+1]), rain: $rain, T: $temp_celsius")
         rain = Int(ceil(rain))
         publish_say(:rain_now, rain_1h, :rain_now_2)
     end
+
+    tell_current_wind(w)
 end
 
 function tell_current_wind(w)
