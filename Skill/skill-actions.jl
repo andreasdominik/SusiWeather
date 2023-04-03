@@ -29,7 +29,7 @@ function Susi_TellWeather_action(topic, payload)
     if isnothing(w)
         publish_say(:no_weather_service)
     else
-        tell_current_weater(w)
+        tell_current_weather(w)
     end
 
     publish_end_session()
