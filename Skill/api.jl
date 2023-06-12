@@ -45,7 +45,7 @@ function tell_current_weather(w)
         publish_say(:no_rain)
     else
         rain = Int(ceil(rain))
-        publish_say(:rain_now, rain_1h, :rain_now_2)
+        publish_say(:rain_now, rain, :rain_now_2)
     end
 
     tell_current_wind(w)
